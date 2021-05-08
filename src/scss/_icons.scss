@@ -1,0 +1,35 @@
+.icon {
+  position: relative;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 14px;
+  height: 14px;
+  top: 2px;
+
+  &.i-arrow {
+    background-image: url('./icons/arrow.svg');
+  }
+
+  &.i-check {
+    background-image: url('./icons/checkmark.svg');
+  }
+
+  &.i-check-w {
+    background-image: url('./icons/checkmark-white.svg');
+    width: 20px;
+    height: 15px;
+  }
+
+  &.i-cross {
+    background-image: url('./icons/cross.svg');
+  }
+
+  &.i-plus {
+    background-image: url('./icons/plus.svg');
+  }
+
+  &.i-plus-w {
+    background-image: url('./icons/plus-white.svg');
+  }
+}

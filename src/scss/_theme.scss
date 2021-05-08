@@ -1,0 +1,25 @@
+body {
+  background-color: $bgDark;
+}
+
+.bp-box {
+  background-color: $bgLight;
+  border-radius: 10px;
+
+  .bp-header,
+  .bp-content,
+  .bp-footer {
+    padding: 1.0rem;
+  }
+
+  .bp-footer {
+    background-color: $accentLight;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .bp-header,
+  .bp-label {
+    font-weight: 600;
+  }
+}

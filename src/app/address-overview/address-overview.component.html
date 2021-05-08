@@ -1,0 +1,29 @@
+<div class="bp-box">
+  <div class="bp-header">
+    Mein Standort
+  </div>
+  <div class="bp-content">
+    <div class="d-flex my-4">
+      <div class="mx-5 bp-label">
+        Meine Standorte
+      </div>
+      <div class="mx-5">
+        <app-address-item
+          *ngFor="let item of (items$ | async)"
+          [item]="item"
+        ></app-address-item>
+      </div>
+    </div>
+  </div>
+  <div class="bp-footer d-flex justify-content-center">
+    <button class="btn bp-btn rounded-pill px-4" (click)="editVisible = !editVisible">
+      Neuen Standort hinzufügen <i class="icon i-plus-w ms-2"></i>
+    </button>
+  </div>
+</div>
+<app-modal [(visible)]="editVisible">
+  <app-address-edit
+    (cancelEvent)="onCancelEdit()"
+    (saveEvent)="onSaveEdit($event)"
+  ></app-address-edit>
+</app-modal>

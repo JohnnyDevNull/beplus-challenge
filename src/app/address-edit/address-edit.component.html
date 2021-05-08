@@ -1,0 +1,33 @@
+<div class="bp-box">
+  <div class="bp-header">
+    Neuen Standort hinzufügen
+  </div>
+  <div class="bp-content">
+    <div class="bp-label mb-3">
+      <label for="typeahead-basic">
+        Adresse suchen
+      </label>
+    </div>
+    <ng-container *ngIf="model == null; else preview">
+      <input id="typeahead-basic"
+             type="text"
+             class="form-control"
+             [(ngModel)]="model"
+             [ngbTypeahead]="search" />
+    </ng-container>
+    <ng-template #preview>
+      <div class="d-flex">
+        <div><app-address-item [item]="model"></app-address-item></div>
+        <div (click)="onEditModel()">Ort ändern</div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="bp-footer d-flex justify-content-center">
+    <button class="btn bp-light-btn rounded-pill px-4 me-2" (click)="onCancel()">
+      Abbrechen <i class="icon i-cross ms-2"></i>
+    </button>
+    <button class="btn bp-btn rounded-pill px-4 ms-2" (click)="onSave()">
+      Speichern <i class="icon i-check-w ms-2"></i>
+    </button>
+  </div>
+</div>

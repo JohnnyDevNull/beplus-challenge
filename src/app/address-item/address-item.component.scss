@@ -1,0 +1,23 @@
+:host .addr-item {
+  @import 'src/scss/variables';
+
+  border: 1px solid $textLight2;
+  padding: 0.5rem;
+  border-radius: 5px;
+
+  .addr-label,
+  .addr-content,
+  .addr-country {
+    line-height: 1.1rem;
+  }
+
+  .addr-label {
+    font-weight: 600;
+  }
+
+  .addr-country {
+    font-size: 0.9rem;
+    color: $textLight4;
+    font-style: italic;
+  }
+}
