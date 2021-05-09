@@ -51,7 +51,6 @@ export class AddressEditComponent {
   }
 
   public onSave(): void {
-    console.warn(this.model);
     if (!this.selected) { return; }
     if (!this.model?.label) { return; }
 
