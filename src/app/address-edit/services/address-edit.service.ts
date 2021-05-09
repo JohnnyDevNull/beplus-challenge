@@ -11,20 +11,18 @@ export class AddressService {
     if (term.length < 3) {
       return of([]);
     }
-    return this.http.get<any>('https://photon.komoot.io/api/', {
+    const options = {
       params: {
         q: term,
-        limit: '40',
         lang: 'de'
       },
-    }).pipe(
+    };
+    return this.http.get<any>('https://photon.komoot.io/api/', options).pipe(
       filter(this.hasFeatures),
-      map(res => {
-        console.warn(res);
-        return res.features
+      map(res => res.features
         .filter(this.hasFullAddress)
-        .map(this.featureToAddress);
-      })
+        .map(this.featureToAddress)
+      )
     );
   }
 
