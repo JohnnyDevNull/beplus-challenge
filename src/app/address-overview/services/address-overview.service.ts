@@ -18,7 +18,7 @@ export class AddressOverviewService {
   private addressItems = new BehaviorSubject<AddressItemModel[]>([...testItems]);
   public addressItems$ = this.addressItems.asObservable();
 
-  public add(v: AddressItemModel) {
+  public add(v: AddressItemModel): void {
     const newItems = [...this.addressItems.getValue()];
     newItems.push(v);
     this.addressItems.next(newItems);
