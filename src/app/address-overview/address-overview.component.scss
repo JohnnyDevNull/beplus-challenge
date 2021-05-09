@@ -1,0 +1,20 @@
+:host ::ng-deep {
+  .mat-card.bp-card {
+    &.addr-overview {
+      width: 600px;
+      max-width: 100%;
+    }
+
+    .mat-card-header {
+      .mat-card-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .mat-card-title {
+        margin-bottom: 0;
+        line-height: 40px;
+      }
+    }
+  }
+}

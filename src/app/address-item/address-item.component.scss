@@ -1,9 +1,11 @@
 :host .addr-item {
   @import 'src/scss/variables';
-
-  border: 1px solid $textLight2;
   padding: 0.5rem;
-  border-radius: 5px;
+
+  &.item-border {
+    border: 1px solid $textLight2;
+    border-radius: 5px;
+  }
 
   .addr-label,
   .addr-content,

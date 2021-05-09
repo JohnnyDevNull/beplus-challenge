@@ -7,3 +7,10 @@ $textLight: #fff;
 $textLight2: #ddd;
 $textLight3: #ccc;
 $textLight4: #bbb;
+
+
+$bp-primary: (
+  100: $accentLight,
+  500: $accentDark,
+  700: darken($accentDark, 10%)
+);

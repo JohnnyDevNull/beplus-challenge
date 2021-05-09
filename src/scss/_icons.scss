@@ -1,11 +1,9 @@
 .icon {
-  position: relative;
   display: inline-block;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   width: 14px;
   height: 14px;
-  top: 2px;
 
   &.i-arrow {
     background-image: url('./icons/arrow.svg');

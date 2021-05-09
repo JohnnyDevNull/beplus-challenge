@@ -5,7 +5,8 @@ import { AddressOverviewService } from './services/address-overview.service';
 
 @Component({
   selector: 'app-address-overview',
-  templateUrl: './address-overview.component.html'
+  templateUrl: './address-overview.component.html',
+  styleUrls: ['./address-overview.component.scss']
 })
 export class AddressOverviewComponent {
 

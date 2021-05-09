@@ -11,4 +11,6 @@ export class AddressItemComponent {
   public item: AddressItemModel | null = null;
   @Input()
   public showLabel = true;
+  @Input()
+  public showBorder = true;
 }

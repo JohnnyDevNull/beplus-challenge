@@ -1,40 +1,97 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$bp-primary: mat-palette($mat-indigo);
+$bp-accent: mat-palette($mat-amber);
+
+// The warn palette is optional (defaults to red).
+$bp-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$bp-theme: mat-light-theme((
+  color: (
+    primary: $bp-primary,
+    accent: $bp-accent,
+    warn: $bp-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($bp-theme);
+
+html, body { height: 100%; }
+
 body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: $bgDark;
 }
 
-.bp-box {
+.mat-card.bp-card {
+  padding: 0;
   background-color: $bgLight;
   border-radius: 10px;
 
-  .bp-header,
-  .bp-content,
-  .bp-footer {
+  .mat-card-header,
+  .mat-card-content,
+  .mat-card-actions {
     padding: 1.0rem;
   }
 
-  .bp-footer {
+  .mat-card-content {
+    margin-bottom: 0;
+  }
+
+  .mat-card-actions:last-child {
+    margin-bottom: unset;
+    padding: 1.0rem;
+  }
+
+  .mat-card-actions {
     background-color: $accentLight;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
   }
 
-  .bp-header,
-  .bp-label {
-    font-weight: 600;
-  }
-
-  .bp-header {
-    .bp-h-icon {
+  .mat-card-header {
+    .bp-arrow {
       display: inline-block;
-      background-color: $accentLight;
+      background: $accentLight url('./icons/arrow.svg');
+      background-size: contain;
       padding: 1.0rem;
       border-radius: 100px;
       line-height: 1.0rem;
       .icon {
-        top: 1px;
+        position: relative;
+        top: 2px;
         width: 20px;
         height: 20px;
       }
     }
   }
+}
+
+.mat-input-w100 {
+  width: 100%;
+}
+
+.mat-option {
+  border-bottom: 1px solid $textLight2;
 }

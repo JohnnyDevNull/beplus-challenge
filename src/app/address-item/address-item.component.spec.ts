@@ -4,7 +4,8 @@ import { AddressItemComponent } from './address-item.component';
 
 const testItem: AddressItemModel = {
   label: 'Testlabel',
-  street: 'Teststrasse 5',
+  street: 'Teststrasse',
+  housenumber: '5',
   zipCode: '99999',
   city: 'Teststadt',
   state: 'Teststate',

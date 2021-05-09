@@ -1,30 +1,52 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { AddressItemModel } from '../../address-overview/models/address-item.model';
-
-const addressList: AddressItemModel[] = [
-  { street: 'Limbacher Straße 12',  zipCode: '91126', city: 'Schwabach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Limbacher Straße 12a', zipCode: '91126', city: 'Schwabach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Limbacher Straße 12b', zipCode: '91126', city: 'Schwabach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Limbacher Straße 12c', zipCode: '91126', city: 'Schwabach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 1', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 2', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 3', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 4', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 1', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 2', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 3', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 4', zipCode: '91522', city: 'Ansbach', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 1', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 2', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 3', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofsplatz 4', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 1', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 2', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 3', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-  { street: 'Bahnhofstraße 4', zipCode: '90443', city: 'Nürnberg', country: 'Deutschland', state: 'Bayern' },
-];
 
 @Injectable({ providedIn: 'root' })
 export class AddressService {
-  public readonly items: AddressItemModel[] = [...addressList];
+
+  public getItems(term: string): Observable<AddressItemModel[]> {
+    if (term.length < 3) {
+      return of([]);
+    }
+    return this.http.get<any>('https://photon.komoot.io/api/', {
+      params: {
+        q: term,
+        limit: '40',
+        lang: 'de'
+      },
+    }).pipe(
+      filter(this.hasFeatures),
+      map(res => {
+        console.warn(res);
+        return res.features
+        .filter(this.hasFullAddress)
+        .map(this.featureToAddress);
+      })
+    );
+  }
+
+  public constructor(
+    private readonly http: HttpClient
+  ) { }
+
+  private hasFeatures = (res: any) => res?.features?.length > 0;
+
+  private hasFullAddress = (i: any): boolean => i.properties.city
+    && i.properties.country
+    && i.properties.street
+    && i.properties.housenumber
+    && i.properties.postcode
+    && i.properties.state;
+
+  private featureToAddress = (i: any): AddressItemModel => ({
+    city: i.properties.city || null,
+    country: i.properties.country || null,
+    zipCode: i.properties.postcode || null,
+    street: i.properties.street || null,
+    housenumber: i.properties.housenumber || null,
+    state: i.properties.state || null
+  })
 }

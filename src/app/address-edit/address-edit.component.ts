@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Observable, OperatorFunction } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 import { AddressItemModel } from '../address-overview/models/address-item.model';
 import { AddressService } from './services/address-edit.service';
 
@@ -30,16 +30,21 @@ export class AddressEditComponent {
     return this.model?.label || '';
   }
 
+  private readonly loadAddressList$ = new Subject<KeyboardEvent>();
+  public addressList$: Observable<AddressItemModel[]> = this.loadAddressList$.pipe(
+    debounceTime(300),
+    switchMap((e: any) => {
+      if (e?.target?.value?.length > 2) {
+        return this.addrService.getItems(e?.target?.value);
+      } else {
+        return of([]);
+      }
+    })
+  );
+
   public constructor(
     private readonly addrService: AddressService
   ) { }
-
-  search: OperatorFunction<string, readonly AddressItemModel[]> =
-    (text$: Observable<string>) => text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length > 2 ? this.filterAddressList(term) : [])
-    )
 
   public onEditModel(): void {
     this.model = null;
@@ -58,22 +63,22 @@ export class AddressEditComponent {
       ? {...this.model}
       : null
     );
-  }
 
-  private filterAddressList(term: string): AddressItemModel[] {
-    return this.addrService.items.filter(v => Object
-      .values(v)
-      .join('')
-      .toLowerCase()
-      .indexOf(term.toLowerCase()) > -1
-    ).slice(0, 3);
+    setTimeout(() => {
+      this.model = null;
+      this.selected = false;
+    });
   }
 
   public formatter = (item: AddressItemModel): string => {
-    return `${item.street}, ${item.zipCode} ${item.city}`;
+    return item != null ? `${item.street}, ${item.zipCode} ${item.city}` : '';
   }
 
   public onItemSelect(): void {
     this.selected = true;
+  }
+
+  public filterAddressList(event: KeyboardEvent): void {
+    this.loadAddressList$.next(event);
   }
 }

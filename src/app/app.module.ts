@@ -1,7 +1,13 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddressEditComponent } from './address-edit/address-edit.component';
 import { AddressItemComponent } from './address-item/address-item.component';
 import { AddressOverviewComponent } from './address-overview/address-overview.component';
@@ -18,8 +24,14 @@ import { ModalComponent } from './modal/modal.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    NgbModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatAutocompleteModule
   ],
   bootstrap: [AppComponent]
 })

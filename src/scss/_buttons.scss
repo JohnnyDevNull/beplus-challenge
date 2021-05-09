@@ -1,34 +1,12 @@
 
 .bp-btn {
-  @include button-variant(
-    $accentDark, // background
-    $accentDark, // border
-  );
-
+  background-color: $accentDark;
   color: $textLight;
-
-  &:hover,
-  &:active,
-  &:focus,
-  &:visited {
-    color: $textLight;
-  }
 }
 
 .bp-light-btn {
-  @include button-variant(
-    darken($accentLight, 8%), // background
-    darken($accentLight, 8%), // border
-  );
-
+  background-color: darken($accentLight, 5%);
   color: $accentDark;
-
-  &:hover,
-  &:active,
-  &:focus,
-  &:visited {
-    color: $accentDark;
-  }
 }
 
 .bp-btn-blank {
