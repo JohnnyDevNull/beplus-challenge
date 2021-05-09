@@ -37,8 +37,14 @@ html, body { height: 100%; }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Quicksand', Roboto, "Helvetica Neue", sans-serif;
   background-color: $bgDark;
+}
+
+.mat-body,
+.mat-body-1,
+.mat-typography {
+  font-family: 'Quicksand', Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-card.bp-card {
@@ -71,18 +77,23 @@ body {
   }
 
   .mat-card-header {
-    .bp-arrow {
-      display: inline-block;
-      background: $accentLight url('./icons/arrow.svg');
-      background-size: contain;
-      padding: 1.0rem;
-      border-radius: 100px;
-      line-height: 1.0rem;
-      .icon {
-        position: relative;
-        top: 2px;
+    .mat-card-avatar {
+      background-color: $accentLight;
+      width: 60px;
+      height: 60px;
+      .bp-arrow {
+        display: inline-block;
+        background: url('./icons/arrow.svg');
+        background-size: contain;
         width: 20px;
         height: 20px;
+
+        .icon {
+          position: relative;
+          top: 2px;
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }
