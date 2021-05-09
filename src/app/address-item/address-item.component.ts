@@ -9,4 +9,6 @@ import { AddressItemModel } from '../address-overview/models/address-item.model'
 export class AddressItemComponent {
   @Input()
   public item: AddressItemModel | null = null;
+  @Input()
+  public showLabel = true;
 }

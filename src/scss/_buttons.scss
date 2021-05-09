@@ -17,8 +17,8 @@
 
 .bp-light-btn {
   @include button-variant(
-    darken($accentLight, 10%), // background
-    darken($accentLight, 10%), // border
+    darken($accentLight, 8%), // background
+    darken($accentLight, 8%), // border
   );
 
   color: $accentDark;
@@ -29,4 +29,11 @@
   &:visited {
     color: $accentDark;
   }
+}
+
+.bp-btn-blank {
+  background-color: transparent;
+  border-color: transparent;
+  color: $accentDark;
+  font-weight: 600;
 }

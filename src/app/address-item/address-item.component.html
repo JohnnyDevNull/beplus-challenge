@@ -1,5 +1,5 @@
 <div class="addr-item">
-  <div class="addr-label">{{ item?.label }}</div>
+  <div class="addr-label" *ngIf="showLabel">{{ item?.label }}</div>
   <div class="addr-content">{{ item?.street }}, {{ item?.zipCode }} {{ item?.city }}</div>
   <div class="addr-country">{{ item?.state }}, {{ item?.country }}</div>
 </div>

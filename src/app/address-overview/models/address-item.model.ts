@@ -1,5 +1,5 @@
 export interface AddressItemModel {
-  label: string;
+  label?: string;
   street: string;
   zipCode: string;
   city: string;
