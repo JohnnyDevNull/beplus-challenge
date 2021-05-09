@@ -1,6 +1,8 @@
 <div class="bp-box">
   <div class="bp-header">
-    Mein Standort
+    <div class="bp-h-icon me-1">
+      <i class="icon i-arrow"></i>
+    </div> Mein Standort
   </div>
   <div class="bp-content">
     <div class="d-flex my-4">
@@ -11,6 +13,7 @@
         <app-address-item
           *ngFor="let item of (items$ | async)"
           [item]="item"
+          class="d-block mb-3"
         ></app-address-item>
       </div>
     </div>

@@ -22,4 +22,19 @@ body {
   .bp-label {
     font-weight: 600;
   }
+
+  .bp-header {
+    .bp-h-icon {
+      display: inline-block;
+      background-color: $accentLight;
+      padding: 1.0rem;
+      border-radius: 100px;
+      line-height: 1.0rem;
+      .icon {
+        top: 1px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 }
