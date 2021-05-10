@@ -20,12 +20,16 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button class="btn bp-btn rounded-pill px-4" (click)="editVisible = !editVisible">
+    <button
+      mat-flat-button
+      class="btn bp-btn rounded-pill px-4 bp-add-addr"
+      (click)="editVisible = !editVisible"
+    >
       Neuen Standort hinzufügen <i class="icon i-plus-w ms-2"></i>
     </button>
   </mat-card-actions>
 </mat-card>
-<app-modal [(visible)]="editVisible">
+<app-modal [(visible)]="editVisible" [zIndex]="200">
   <app-address-edit
     (cancelEvent)="onCancelEdit()"
     (saveEvent)="onSaveEdit($event)"

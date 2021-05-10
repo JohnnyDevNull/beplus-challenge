@@ -8,6 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ModalComponent {
   private _visible = false;
 
+  @Input()
+  public zIndex = 0;
+
   public get visible(): boolean {
     return this._visible;
   }
