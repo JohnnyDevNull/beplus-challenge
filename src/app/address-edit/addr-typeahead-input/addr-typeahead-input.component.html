@@ -7,6 +7,14 @@
     [matAutocomplete]="auto"
     [(ngModel)]="model"
     (keyup)="filterAddressList($event)">
+  <button
+    mat-button *ngIf="model"
+    matSuffix
+    mat-icon-button
+    (click)="model = null"
+  >
+    <i class="icon i-cross"></i>
+  </button>
   <mat-autocomplete
     #auto="matAutocomplete"
     [displayWith]="formatter"
