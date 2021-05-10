@@ -21,4 +21,12 @@
     matInput
     placeholder="Name für gewählten Standort vergeben"
     [(ngModel)]="addrLabel">
+  <button
+    mat-button *ngIf="addrLabel"
+    matSuffix
+    mat-icon-button
+    (click)="addrLabel = null"
+  >
+    <i class="icon i-cross"></i>
+  </button>
 </mat-form-field>

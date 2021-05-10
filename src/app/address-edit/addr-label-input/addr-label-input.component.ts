@@ -18,13 +18,13 @@ export class AddrLabelInputComponent {
     this.editEvent.next();
   }
 
-  public set addrLabel(v: string) {
+  public set addrLabel(v: string | null) {
     if (this.model) {
       this.model.label = v;
     }
   }
 
-  public get addrLabel(): string {
+  public get addrLabel(): string | null {
     return this.model?.label || '';
   }
 }
