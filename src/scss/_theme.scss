@@ -126,3 +126,12 @@ body {
     }
   }
 }
+
+.mat-card-header .mat-card-title {
+  font-size: inherit;
+}
+
+.mat-card-header .mat-card-title,
+.bp-label {
+  font-weight: 500;
+}
