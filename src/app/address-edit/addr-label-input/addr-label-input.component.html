@@ -1,0 +1,24 @@
+<div class="d-flex mb-2">
+  <div class="flex-grow-1">
+    <app-address-item
+      [item]="model"
+      [showLabel]="false"
+    ></app-address-item>
+  </div>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <button
+      mat-flat-button
+      class="bp-btn-blank"
+      (click)="onEditModel()"
+    >Ort ändern</button>
+  </div>
+</div>
+<mat-form-field class="mat-input-w100" appearance="outline">
+  <mat-label>Name für gewählten Standort vergeben</mat-label>
+  <input
+    type="text"
+    class="form-control"
+    matInput
+    placeholder="Name für gewählten Standort vergeben"
+    [(ngModel)]="addrLabel">
+</mat-form-field>

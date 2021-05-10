@@ -106,3 +106,12 @@ body {
 .mat-option {
   border-bottom: 1px solid $textLight2;
 }
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
+.mat-form-field.mat-focused .mat-form-field-label{
+  color: $accentDark;
+}
+
+.mat-form-field-appearance-outline:not(.mat-form-field-disabled):not(.mat-focused) .mat-form-field-flex:hover .mat-form-field-outline {
+  color: rgba(0,0,0,0.4);
+}

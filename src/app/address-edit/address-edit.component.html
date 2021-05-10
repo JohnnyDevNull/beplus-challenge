@@ -9,54 +9,16 @@
       Adresse suchen
     </div>
     <ng-container *ngIf="selected === false; else preview">
-
-      <mat-form-field class="mat-input-w100" appearance="outline">
-        <mat-label>Suche</mat-label>
-        <input
-          type="text"
-          placeholder="Suche"
-          matInput
-          [matAutocomplete]="auto"
-          [(ngModel)]="model"
-          (keyup)="filterAddressList($event)">
-        <mat-autocomplete
-          #auto="matAutocomplete"
-          [displayWith]="formatter"
-          (optionSelected)="onItemSelect()">
-          <mat-option *ngFor="let item of addressList$ | async" [value]="item">
-            <app-address-item
-              [item]="item"
-              [showLabel]="false"
-              [showBorder]="false"
-            ></app-address-item>
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+      <app-addr-typeahead-input
+        (selectEvent)="onItemSelect()"
+        [(model)]="model"
+      ></app-addr-typeahead-input>
     </ng-container>
     <ng-template #preview>
-      <div class="d-flex mb-2">
-        <div>
-          <app-address-item
-            [item]="model"
-            [showLabel]="false"
-          ></app-address-item>
-        </div>
-        <div class="d-flex flex-column justify-content-center align-items-center">
-          <button
-            class="bp-btn-blank"
-            (click)="onEditModel()"
-          >Ort ändern</button>
-        </div>
-      </div>
-      <mat-form-field class="mat-input-w100" appearance="outline">
-        <mat-label>Name für gewählten Standort vergeben</mat-label>
-        <input
-          type="text"
-          class="form-control"
-          matInput
-          placeholder="Name für gewählten Standort vergeben"
-          [(ngModel)]="addrLabel">
-      </mat-form-field>
+      <app-addr-label-input
+        (editEvent)="onEditModel()"
+        [model]="model"
+      ></app-addr-label-input>
     </ng-template>
   </mat-card-content>
   <mat-card-actions>

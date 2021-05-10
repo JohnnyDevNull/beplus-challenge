@@ -1,0 +1,22 @@
+<mat-form-field class="mat-input-w100" appearance="outline">
+  <mat-label>Suchen</mat-label>
+  <input
+    type="text"
+    placeholder="Suchen"
+    matInput
+    [matAutocomplete]="auto"
+    [(ngModel)]="model"
+    (keyup)="filterAddressList($event)">
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="formatter"
+    (optionSelected)="onItemSelect($event)">
+    <mat-option *ngFor="let item of addressList$ | async" [value]="item">
+      <app-address-item
+        [item]="item"
+        [showLabel]="false"
+        [showBorder]="false"
+      ></app-address-item>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
