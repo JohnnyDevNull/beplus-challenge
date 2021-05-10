@@ -115,3 +115,14 @@ body {
 .mat-form-field-appearance-outline:not(.mat-form-field-disabled):not(.mat-focused) .mat-form-field-flex:hover .mat-form-field-outline {
   color: rgba(0,0,0,0.4);
 }
+
+.mat-form-field-appearance-outline {
+  &.bp-outline-nolabel {
+    .mat-form-field-infix {
+      border-top: 0.3em solid transparent;
+    }
+    .mat-form-field-suffix {
+      top: unset;
+    }
+  }
+}

@@ -7,8 +7,7 @@ import { AddressService } from '../services/address-edit.service';
 
 @Component({
   selector: 'app-addr-typeahead-input',
-  templateUrl: './addr-typeahead-input.component.html',
-  styleUrls: ['./addr-typeahead-input.component.scss']
+  templateUrl: './addr-typeahead-input.component.html'
 })
 export class AddrTypeaheadInputComponent {
 

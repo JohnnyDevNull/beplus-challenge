@@ -3,8 +3,7 @@ import { AddressItemModel } from '../../address-overview/models/address-item.mod
 
 @Component({
   selector: 'app-addr-label-input',
-  templateUrl: './addr-label-input.component.html',
-  styleUrls: ['./addr-label-input.component.scss']
+  templateUrl: './addr-label-input.component.html'
 })
 export class AddrLabelInputComponent {
 
