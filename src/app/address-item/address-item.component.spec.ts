@@ -39,6 +39,10 @@ describe('AddressItemComponent', () => {
     expect(component.showLabel).toEqual(true);
   });
 
+  it(`should have showBorder initially true`, () => {
+    expect(component.showBorder).toEqual(true);
+  });
+
   it('should render label', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.addr-item .addr-label').textContent).toContain('Test');
@@ -49,5 +53,17 @@ describe('AddressItemComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.addr-item .addr-label')).toBeFalsy();
+  });
+
+  it('should have border class', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.addr-item.item-border')).toBeTruthy();
+  });
+
+  it('must not have border class', () => {
+    component.showBorder = false;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.addr-item.item-border')).toBeFalsy();
   });
 });

@@ -4,10 +4,21 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddressItemModel } from '../address-overview/models/address-item.model';
 import { AddrLabelInputComponent } from './addr-label-input/addr-label-input.component';
 import { AddrTypeaheadInputComponent } from './addr-typeahead-input/addr-typeahead-input.component';
 import { AddressEditComponent } from './address-edit.component';
 import { AddressService } from './services/address-edit.service';
+
+const testAddr: AddressItemModel = {
+  label: 'Test Office',
+  street: 'Teststreet',
+  housenumber: '1',
+  state: 'Teststate',
+  country: 'Testcountry',
+  zipCode: '99999',
+  city: 'Test City'
+};
 
 describe('AddressEditComponent', () => {
   let component: AddressEditComponent;
@@ -52,15 +63,7 @@ describe('AddressEditComponent', () => {
 
   it('should display app-addr-typeahead-input', () => {
     component.selected = true;
-    component.model = {
-      label: 'Test Office',
-      street: 'Teststreet',
-      housenumber: '1',
-      state: 'Teststate',
-      country: 'Testcountry',
-      zipCode: '99999',
-      city: 'Test City'
-    };
+    component.model = {...testAddr};
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('app-addr-typeahead-input')).toBeFalsy();
