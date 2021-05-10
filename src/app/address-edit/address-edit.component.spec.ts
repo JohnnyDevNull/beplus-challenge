@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddressItemModel } from '../address-overview/models/address-item.model';
 import { AddrLabelInputComponent } from './addr-label-input/addr-label-input.component';
@@ -68,5 +69,18 @@ describe('AddressEditComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('app-addr-typeahead-input')).toBeFalsy();
     expect(compiled.querySelector('app-addr-label-input')).toBeTruthy();
+  });
+
+  it('should switch to address search input', () => {
+    component.selected = true;
+    component.model = {...testAddr};
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-addr-typeahead-input')).toBeFalsy();
+    expect(compiled.querySelector('app-addr-label-input')).toBeTruthy();
+    const buttonElement = fixture.debugElement.query(By.css('.bp-change-address'));
+    buttonElement.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    expect(compiled.querySelector('app-addr-typeahead-input')).toBeTruthy();
   });
 });
